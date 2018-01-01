@@ -21,6 +21,7 @@ GameObject GO = ObjectPooler.SharedInstance.GetPooledObject(0);
 
 8) Make sure that the gameObject you are re-using does infact get disabled naturally after a while.
 (Otherwise there is no point of pooling)
+9) When you just get the object from the pooler, it will be disabled, remember to set it to active.
 
 If you still have doubts, you can try running the sample scene included in the package. Simply download then choose to import a custom package from unity, select the downloaded package and navigate to a scene where you can press the spacebar to get lots of object-pooled balls that disable after 5 seconds.
 
