@@ -16,7 +16,7 @@ This script can act as a pooling control hub, it will create all pooled objects 
 6) Get the gameObject by using 
 
 GameObject GO = ObjectPooler.SharedInstance.GetPooledObject(0);
-(Instead of instantiating a new one.)
+ // (Instead of instantiating a new one.)
 
 7) Make sure that the gameObject you are re-using does infact get disabled naturally after a while.
 (Otherwise there is no point of pooling)
