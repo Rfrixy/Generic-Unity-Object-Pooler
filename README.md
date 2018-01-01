@@ -13,13 +13,14 @@ This script can act as a pooling control hub, it will create all pooled objects 
 3) Replace the contents of ObjectPooler with contents of the ObjectPooler script that can be found in this repo.
 4) Attach the script to the GameObject you created.
 5) In the inspector, in the script component, enter the number of gameObjects you want pooled and then add their prefabs to the list.
-6) Get the gameObject by using 
+6) Increase Amount to Pool to at least 1. If you are unsure how many objects of this type you will need, check the 'should expand' box.
+7) Get the gameObject by using 
 
 GameObject GO = ObjectPooler.SharedInstance.GetPooledObject(0);
  // (Instead of instantiating a new one.)
 
-7) Make sure that the gameObject you are re-using does infact get disabled naturally after a while.
+8) Make sure that the gameObject you are re-using does infact get disabled naturally after a while.
 (Otherwise there is no point of pooling)
 
-If you still have doubts, you can try running the sample scene included in the package. Simply Import a custom package, select the package and navigate to a scene where you can press the spacebar to get lots of object-pooled balls that disable after 5 seconds.
+If you still have doubts, you can try running the sample scene included in the package. Simply download then choose to import a custom package from unity, select the downloaded package and navigate to a scene where you can press the spacebar to get lots of object-pooled balls that disable after 5 seconds.
 
