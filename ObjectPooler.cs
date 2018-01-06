@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,9 +7,15 @@ public class ObjectPoolItem
 {
 
 	public GameObject objectToPool;
-	public int amountToPool = 2;
+	public int amountToPool;
 	public bool shouldExpand = true;
 
+	public ObjectPoolItem(GameObject obj, int amt, bool exp = true)
+	{
+		objectToPool = obj;
+		amountToPool = Mathf.Max(amt,2);
+		shouldExpand = exp;
+	}
 }
 
 public class ObjectPooler : MonoBehaviour
@@ -29,26 +35,15 @@ public class ObjectPooler : MonoBehaviour
 
 		pooledObjectsList = new List<List<GameObject>>();
 		pooledObjects = new List<GameObject>();
-		foreach (ObjectPoolItem item in itemsToPool)
-		{
-			pooledObjects = new List<GameObject>();
-			for (int i = 0; i < item.amountToPool; i++)
-			{
-				GameObject obj = (GameObject)Instantiate(item.objectToPool);
-				obj.SetActive(false);
-				obj.transform.parent = this.transform;
-				pooledObjects.Add(obj);
-			}
-			pooledObjectsList.Add(pooledObjects);
-		}
-
 		positions = new List<int>();
-		for (int i = 0; i < pooledObjectsList.Count; i++)
-		{
-			positions.Add(0);
-		}
-	}
 
+
+		for (int i = 0; i < itemsToPool.Count; i++)
+		{
+			ObjectPoolItemToPooledObject(i);
+		}
+
+	}
 
 
 	public GameObject GetPooledObject(int index)
@@ -81,5 +76,33 @@ public class ObjectPooler : MonoBehaviour
 	public List<GameObject> GetAllPooledObjects(int index)
 	{
 		return pooledObjectsList[index];
+	}
+
+
+	public int AddObject(GameObject GO, int amt = 3, bool exp = true)
+	{
+		ObjectPoolItem item = new ObjectPoolItem(GO, amt, exp);
+		int currLen = itemsToPool.Count;
+		itemsToPool.Add(item);
+		ObjectPoolItemToPooledObject(currLen);
+		return currLen;
+	}
+
+
+	void ObjectPoolItemToPooledObject(int index)
+	{
+		ObjectPoolItem item = itemsToPool[index];
+
+		pooledObjects = new List<GameObject>();
+		for (int i = 0; i < item.amountToPool; i++)
+		{
+			GameObject obj = (GameObject)Instantiate(item.objectToPool);
+			obj.SetActive(false);
+			obj.transform.parent = this.transform;
+			pooledObjects.Add(obj);
+		}
+		pooledObjectsList.Add(pooledObjects);
+		positions.Add(0);
+
 	}
 }
