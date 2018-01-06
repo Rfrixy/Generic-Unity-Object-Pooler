@@ -26,3 +26,21 @@ GameObject GO = ObjectPooler.SharedInstance.GetPooledObject(0);
 If you still have doubts, you can try running the sample scene included in the package. 
 Simply download the pooler package then choose to import a custom package from unity, select the downloaded package and navigate to the scene called BallThrow where you can press the spacebar to get lots of object-pooled balls that disable after 5 seconds.
 
+# Public functions
+
+Assuming you stored a reference to the objectpooler in a variable called OP. 
+( OP = ObjectPooler.SharedInstance;)
+
+1) Getting an object:
+GameObject GO = OP.GetPooledObject(0); // 0 is the index of the object you want
+
+2) Getting all gameobjects of a type:
+List<GameObject> objects = OP.GetAllPooledObjects(0); // 0 is the index of the object you want
+ 
+3) Adding a new object during gameplay:
+int indexOfThisObj = OP.AddObject(gameObj, amt, exp);
+// where gameObj is the gameobject you want to pool
+// amt is an int specifying how many copies you want in the pool
+// exp is a bool which defaults to true, specifies whether this object's pool can expand
+This gameObject can be accessed by using:
+GameObject GO = OP.GetPooledObject(indexOfThisObj);
