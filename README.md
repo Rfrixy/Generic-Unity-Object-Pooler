@@ -31,8 +31,9 @@ Simply download the pooler package then choose to import a custom package from u
 # Public functions
 
 Assuming you stored a reference to the objectpooler in a variable called OP. 
-( OP = ObjectPooler.SharedInstance;)
-
+```
+OP = ObjectPooler.SharedInstance;
+```
 1) Getting an object:
 ```
 GameObject GO = OP.GetPooledObject(0); // 0 is the index of the object you want
