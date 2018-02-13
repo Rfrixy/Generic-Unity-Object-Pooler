@@ -15,9 +15,11 @@ This script can act as a pooling control hub, it will create all pooled objects 
 5) In the inspector, in the script component, enter the number of gameObjects you want pooled and then add their prefabs to the list.
 6) Increase Amount to Pool to at least 1. If you are unsure how many objects of this type you will need, check the 'should expand' box.
 7) Get the gameObject by using 
-
+```
 GameObject GO = ObjectPooler.SharedInstance.GetPooledObject(0);
  // (Instead of instantiating a new one.)
+``
+
 
 8) Make sure that the gameObject you are re-using does infact get disabled naturally after a while.
 (Otherwise there is no point of pooling)
@@ -32,15 +34,21 @@ Assuming you stored a reference to the objectpooler in a variable called OP.
 ( OP = ObjectPooler.SharedInstance;)
 
 1) Getting an object:
+```
 GameObject GO = OP.GetPooledObject(0); // 0 is the index of the object you want
-
+```
 2) Getting all gameobjects of a type:
+```
 List<GameObject> objects = OP.GetAllPooledObjects(0); // 0 is the index of the object you want
- 
+ ```
 3) Adding a new object during gameplay:
-int indexOfThisObj = OP.AddObject(gameObj, amt, exp);
+ ```
+int indexOfThisObj = OP.AddObject(gameObj, amt, true);
 // where gameObj is the gameobject you want to pool
 // amt is an int specifying how many copies you want in the pool
-// exp is a bool which defaults to true, specifies whether this object's pool can expand
+// third argument is a bool which specifies whether this object's pool can expand
+ ```
 This gameObject can be accessed by using:
+```
 GameObject GO = OP.GetPooledObject(indexOfThisObj);
+```
