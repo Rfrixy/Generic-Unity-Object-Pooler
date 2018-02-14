@@ -1,5 +1,5 @@
-# Generic-Unity-Object-Pooler
-An easy to use object-pooler which is efficient and fast.
+# Generic Unity Object Pooler
+An easy to use object-pooler which is efficient and quick to set-up.
 
 # What is pooling? 
 It is computationally expensive to instantiate and destroy objects like bullets that get re-used a lot.
