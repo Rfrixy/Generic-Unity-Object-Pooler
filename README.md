@@ -32,7 +32,10 @@ Simply download the pooler package then choose to import a custom package from u
 
 Assuming you stored a reference to the objectpooler in a variable called OP. 
 ```
-OP = ObjectPooler.SharedInstance;
+ObjectPooler OP;
+void Awake(){
+  OP = ObjectPooler.SharedInstance;
+}
 ```
 1) Getting an object:
 ```
@@ -45,6 +48,7 @@ List<GameObject> objects = OP.GetAllPooledObjects(0); // 0 is the index of the o
 3) Adding a new object during gameplay:
  ```
 int indexOfThisObj = OP.AddObject(gameObj, amt, true);
+
 // where gameObj is the gameobject you want to pool
 // amt is an int specifying how many copies you want in the pool
 // third argument is a bool which specifies whether this object's pool can expand
